@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HortaSmart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>🌱 HortaSmart</h1>
+    <p>Irrigação automática da horta escolar</p>
+  </header>
+
+  <div class="caixa">
+
+    <!-- Formulário de leitura -->
+    <form onsubmit="verificar(); return false;">
+      <h2>Leitura dos sensores</h2>
+
+      <label for="canteiro">Canteiro</label>
+      <select id="canteiro" onchange="trocarCanteiro()">
+        <option value="">Padrão (mínimo 40%)</option>
+      </select>
+
+      <label for="umidade">Umidade do solo (0 a 100%)</label>
+      <input type="number" id="umidade" min="0" max="100" placeholder="Ex: 35" oninput="atualizarBarras()">
+
+      <label for="agua">Nível da água no reservatório (0 a 100%)</label>
+      <input type="number" id="agua" min="0" max="100" value="80" oninput="atualizarBarras()">
+
+      <button type="submit" id="botao">Verificar</button>
+      <button type="button" class="secundario" onclick="reabastecer()">Reabastecer reservatório</button>
+    </form>
+
+    <!-- Painel com os medidores -->
+    <h2>Painel</h2>
+    <div class="painel">
+
+      <div class="medidor">
+        <p class="nome">Solo</p>
+        <div class="tubo">
+          <div id="barra-solo" class="enchimento solo"></div>
+          <div id="linha-solo" class="linha" style="bottom: 40%"></div>
+        </div>
+        <p id="texto-solo" class="valor">0%</p>
+        <p id="legenda-solo" class="legenda">mínimo 40%</p>
+      </div>
+
+      <div class="medidor">
+        <p class="nome">Reservatório</p>
+        <div class="tubo">
+          <div id="barra-agua" class="enchimento agua"></div>
+          <div class="linha" style="bottom: 20%"></div>
+        </div>
+        <p id="texto-agua" class="valor">80%</p>
+        <p class="legenda">mínimo 20%</p>
+      </div>
+
+      <div class="medidor">
+        <p class="nome">Válvula</p>
+        <div id="valvula" class="valvula">
+          <span class="bolinha"></span>
+        </div>
+        <p id="texto-valvula" class="valor">Fechada</p>
+      </div>
+
+    </div>
+
+    <p id="alerta"></p>
+    <p id="resultado">Digite os valores e clique em Verificar.</p>
+
+    <!-- CRUD de canteiros -->
+    <h2 class="separado">Canteiros</h2>
+
+    <form onsubmit="salvarCanteiro(); return false;">
+      <input type="hidden" id="canteiro-id">
+
+      <label for="c-nome">Nome do canteiro</label>
+      <input type="text" id="c-nome" maxlength="40" placeholder="Ex: Canteiro 1">
+
+      <label for="c-planta">Planta cultivada</label>
+      <input type="text" id="c-planta" maxlength="40" placeholder="Ex: Alface">
+
+      <label for="c-limite">Umidade mínima do solo (%)</label>
+      <input type="number" id="c-limite" min="0" max="100" value="40">
+
+      <p id="erro-canteiro" class="erro-form"></p>
+
+      <button type="submit" id="botao-salvar">Cadastrar canteiro</button>
+      <button type="button" id="botao-cancelar" class="secundario" onclick="cancelarEdicao()" style="display: none">Cancelar edição</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Canteiro</th>
+          <th>Planta</th>
+          <th>Mín.</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="tabela-canteiros"></tbody>
+    </table>
+
+    <!-- Histórico -->
+    <div class="topo-historico">
+      <h2>Histórico</h2>
+      <button type="button" class="limpar" onclick="limparHistorico()">Limpar</button>
+    </div>
+    <ul id="historico">
+      <li class="vazio">Nenhuma verificação ainda.</li>
+    </ul>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

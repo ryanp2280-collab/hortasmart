@@ -1,0 +1,137 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e3efe0;
+  margin: 0;
+  padding-bottom: 30px;
+}
+
+header {
+  background-color: #2e6b3b;
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+}
+
+header h1, header p { margin: 0; }
+header p { opacity: 0.9; margin-top: 5px; }
+
+.caixa {
+  background-color: white;
+  max-width: 440px;
+  margin: -15px auto 0;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+h2 { font-size: 18px; margin: 25px 0 10px; }
+form h2 { margin-top: 0; }
+h2.separado { border-top: 1px solid #ddd; padding-top: 20px; margin-top: 25px; }
+
+label { display: block; margin-top: 15px; font-weight: bold; }
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: white;
+}
+
+input:focus, select:focus { outline: 2px solid #2b7fb9; }
+
+button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #2e6b3b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover { background-color: #24552e; }
+button:disabled { background-color: #999; cursor: not-allowed; }
+
+button.secundario { background-color: white; color: #2b7fb9; border: 1px solid #2b7fb9; margin-top: 10px; }
+button.secundario:hover { background-color: #e5f1f9; }
+
+button.limpar { width: auto; margin: 0; padding: 4px 10px; font-size: 13px; background-color: transparent; color: #666; }
+button.limpar:hover { background-color: #eee; }
+
+button.mini { width: auto; margin: 0 0 0 4px; padding: 4px 8px; font-size: 13px; }
+button.editar { background-color: #2b7fb9; }
+button.editar:hover { background-color: #226a9b; }
+button.excluir { background-color: #b3261e; }
+button.excluir:hover { background-color: #8f1e18; }
+
+.painel {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f6f8f4;
+  border-radius: 8px;
+  padding: 15px 5px;
+}
+
+.medidor { text-align: center; width: 33%; }
+.nome { margin: 0 0 8px; font-weight: bold; font-size: 14px; }
+
+.tubo, .valvula {
+  position: relative;
+  width: 50px;
+  height: 130px;
+  margin: 0 auto;
+}
+
+.tubo {
+  background-color: white;
+  border: 2px solid #333;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.enchimento {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  transition: height 0.5s;
+}
+
+.enchimento.solo { background-color: #7a5538; }
+.enchimento.agua { background-color: #2b7fb9; }
+.enchimento.agua.baixo { background-color: #c98600; }
+
+.linha { position: absolute; width: 100%; border-top: 2px dashed #333; }
+.valor { margin: 8px 0 0; font-weight: bold; }
+.legenda { margin: 2px 0 0; font-size: 12px; color: #666; }
+
+.valvula { display: flex; align-items: center; justify-content: center; }
+.bolinha { width: 36px; height: 36px; border-radius: 50%; background-color: #aaa; }
+.valvula.aberta .bolinha { background-color: #2b7fb9; animation: piscar 0.8s infinite; }
+
+@keyframes piscar { 50% { opacity: 0.4; } }
+
+#alerta { color: #c98600; font-weight: bold; margin-bottom: 0; }
+.erro-form { color: red; font-weight: bold; margin: 10px 0 0; }
+
+#resultado { font-weight: bold; padding: 10px; background-color: #f2f2f2; border-radius: 5px; }
+#resultado.ok { color: green; background-color: #e3f1e3; }
+#resultado.irrigando { color: #2b7fb9; background-color: #e3f0f9; }
+#resultado.erro { color: red; background-color: #fbe9e7; }
+
+.topo-historico { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #ddd; margin-top: 25px; }
+
+ul { padding-left: 0; margin: 0; list-style: none; }
+li { padding: 6px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+li.vazio, td.vazio { color: #888; }
+
+table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+th { text-align: left; border-bottom: 2px solid #ccc; padding: 6px 4px; }
+td { border-bottom: 1px solid #eee; padding: 8px 4px; }
+td.acoes { text-align: right; white-space: nowrap; }
